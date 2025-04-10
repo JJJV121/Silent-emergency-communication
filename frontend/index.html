@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Silent Connect - Quick, silent help for the speech and hearing impaired.">
-    <title>Silent Connect</title>
+    <meta name="description" content="Silent Emergency Communication website for speech and hearing impaired individuals to seek urgent help efficiently.">
+    <title>Silent Connect</title> <!-- Updated title -->
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
     <script src="script.js" defer></script> <!-- Link to your JavaScript file -->
     <style>
@@ -16,7 +16,8 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background: url('restbg.jpeg') no-repeat center center fixed;
+            background-size: contain; /* Ensures the image fits the entire screen */
             text-align: center;
         }
         .logo {
@@ -55,18 +56,49 @@
     </style>
 </head>
 <body>
-    <img src="logo.jpeg" alt="Silent Connect Logo" class="logo">
-    <h1>Silent Connect</h1>
-    <p>Quick, silent help for the speech and hearing impaired.</p>
-    <div class="button-container">
-        <button onclick="callEmergencyService('ambulance')">🚑 Call Ambulance</button>
-        <button onclick="callEmergencyService('fire')">🔥 Call Fire Services</button>
-        <button onclick="callEmergencyService('police')">🚓 Call Police</button>
-        <button onclick="startTextToSpeech()">Text-to-Speech</button>
-        <button onclick="startSpeechToText()">Speech-to-Text</button>
-        <button onclick="shareLocation()">📍 Share Location</button>
-        <button onclick="location.href='emercontact.html'">Save Emergency Contacts</button>
-        <button onclick="callPriorityContact()">Call Priority Contact</button>
-    </div>
+    <header>
+        <img src="logo.jpeg" alt="Silent Connect Logo" class="logo"> <!-- Added logo -->
+        <h1>Silent Emergency Communication</h1>
+        <p>Enhancing accessibility and safety in critical situations</p>
+    </header>
+
+    <main>
+        <section id="emergency-services">
+            <h2>Emergency Services</h2>
+            <div class="quick-call-buttons">
+                <button onclick="callService('ambulance')">🚑 Ambulance</button>
+                <button onclick="callService('fire')">🔥 Fire Services</button>
+                <button onclick="callService('police')">🚓 Police</button>
+            </div>
+        </section>
+
+        <section id="communication-tools">
+            <h2>Communication Tools</h2>
+            <div>
+                <button onclick="startTextToSpeech()">Text-to-Speech</button>
+                <button onclick="startSpeechToText()">Speech-to-Text</button>
+            </div>
+        </section>
+
+        <section id="location-sharing">
+            <h2>Share Your Location</h2>
+            <button onclick="shareLocation()">📍 Share Live Location</button>
+            <p id="location-status"></p>
+        </section>
+
+        <section id="emergency-contacts">
+            <h2>Personal Emergency Contacts</h2>
+            <button onclick="callPriorityContact()">Call Priority Contact</button>
+            <ul id="contact-list">
+                <!-- Contacts from emercontact.html will be displayed here -->
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Silent Emergency Communication. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>

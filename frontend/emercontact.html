@@ -94,6 +94,7 @@
         <ul id="contact-list" class="contact-list">
             <!-- Contacts will be dynamically added here -->
         </ul>
+        <button onclick="location.href='index.html'">Go to Main</button> <!-- Button to go to index.html -->
     </div>
 
     <script>
@@ -108,6 +109,7 @@
 
             if (name && phone) {
                 addContact(name, phone);
+                saveContact(name, phone);
                 contactForm.reset();
             }
         });
@@ -126,20 +128,47 @@
             contactList.appendChild(listItem);
         }
 
+        // Function to save a contact to localStorage
+        function saveContact(name, phone) {
+            const savedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
+            savedContacts.push({ name, phone });
+            localStorage.setItem('contacts', JSON.stringify(savedContacts));
+        }
+
         // Function to delete a contact
         function deleteContact(button) {
             const listItem = button.parentElement.parentElement;
+            const contactText = listItem.firstChild.textContent;
+            const [name, phone] = contactText.split(' - ');
+
+            // Remove from localStorage
+            let savedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
+            savedContacts = savedContacts.filter(contact => contact.name !== name.trim() || contact.phone !== phone.trim());
+            localStorage.setItem('contacts', JSON.stringify(savedContacts));
+
+            // Remove from UI
             contactList.removeChild(listItem);
         }
 
         // Function to edit a contact
         function editContact(button) {
             const listItem = button.parentElement.parentElement;
-            const [name, phone] = listItem.firstChild.textContent.split(' - ');
+            const contactText = listItem.firstChild.textContent;
+            const [name, phone] = contactText.split(' - ');
+
+            // Pre-fill the form with the contact details
             document.getElementById('contact-name').value = name.trim();
             document.getElementById('contact-phone').value = phone.trim();
-            contactList.removeChild(listItem);
+
+            // Remove the contact from the list and localStorage
+            deleteContact(button);
         }
+
+        // Load contacts from localStorage on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
+            savedContacts.forEach(contact => addContact(contact.name, contact.phone));
+        });
     </script>
 </body>
 </html>
