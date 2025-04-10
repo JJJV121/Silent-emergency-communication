@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Try Silent Connect features.">
+    <title>Try Silent Connect</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <script>
+        // Function to display stored contacts under the Call Contact button
+        function loadContacts() {
+            const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+            const contactList = document.getElementById('contact-list');
+            contactList.innerHTML = ''; // Clear existing list
+
+            if (contacts.length > 0) {
+                contacts.forEach(contact => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${contact.name} - ${contact.phone}`;
+                    contactList.appendChild(listItem);
+                });
+            } else {
+                contactList.innerHTML = '<li>No contacts saved.</li>';
+            }
+        }
+
+        // Function to call the priority contact
+        function callPriorityContact() {
+            const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+            if (contacts.length > 0) {
+                const priorityContact = contacts[0]; // Get the first contact as priority
+                alert(`Calling ${priorityContact.name} at ${priorityContact.phone}`);
+                window.location.href = `tel:${priorityContact.phone}`;
+            } else {
+                alert('No contacts available.');
+            }
+        }
+
+        // Load contacts when the page loads
+        window.onload = loadContacts;
+    </script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('restbg.jpeg') no-repeat center center fixed; /* Added restbg.jpeg as background */
+            background-size: cover; /* Ensures the image fits the entire screen */
+            text-align: center;
+        }
+        .container {
+            background: white; /* Continuous white box */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .header-container {
+            display: flex;
+            flex-direction: column; /* Center-align Silent Connect */
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .logo {
+            width: 100px; /* Enlarged logo size */
+            height: auto;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin: 0;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #0078d7;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 1rem 0; /* Space between buttons */
+            width: 100%; /* Full width inside the container */
+            max-width: 300px; /* Limit button width */
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <img src="logo.jpeg" alt="Silent Connect Logo" class="logo"> <!-- Added logo -->
+            <h1>Silent Connect</h1> <!-- Centered Silent Connect -->
+        </div>
+
+        <main>
+            <button onclick="location.href='services.html'">Emergency Services</button> <!-- Emergency Services button -->
+            <button onclick="location.href='text.html'">Communication Tools</button> <!-- Communication Tools button -->
+            <button onclick="shareLocation()">📍 Share Live Location</button> <!-- Share Location button -->
+            <button onclick="callPriorityContact()">Call Priority Contact</button> <!-- Call Contact button -->
+            <ul id="contact-list">
+                <!-- Stored contacts will be displayed here -->
+            </ul>
+        </main>
+    </div>
+    <script>
+        // Function to share the current location using Google Maps
+        function shareLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                        alert(`Your location: ${googleMapsUrl}`);
+                        window.open(googleMapsUrl, '_blank'); // Open Google Maps in a new tab
+                    },
+                    () => {
+                        alert('Unable to retrieve your location.');
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by your browser.');
+            }
+        }
+    </script>
+</body>
+</html>

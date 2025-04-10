@@ -11,7 +11,8 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 1rem;
-            background-color: #f9f9f9;
+            background: url('restbg.jpeg') no-repeat center center fixed; /* Added restbg.jpeg as background */
+            background-size: cover; /* Ensures the image fits the entire screen */
             color: #333;
         }
         .container {
@@ -22,9 +23,24 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+        .header-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
             text-align: center;
-            color: #0078d7;
+            justify-content: center;
+        }
+        .logo {
+            width: 80px;
+            height: auto;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin: 0;
+            background: none; /* Ensures no background color */
+            border: none; /* Ensures no border */
         }
         form {
             display: flex;
@@ -78,23 +94,46 @@
             background-color: #31b0d5;
         }
     </style>
+    <script>
+        // Function to save a contact to localStorage
+        function saveContact(event) {
+            event.preventDefault();
+            const name = document.getElementById('contact-name').value;
+            const phone = document.getElementById('contact-phone').value;
+
+            if (name && phone) {
+                const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+                contacts.push({ name, phone });
+                localStorage.setItem('contacts', JSON.stringify(contacts));
+                alert('Contact saved successfully!');
+                document.getElementById('contact-form').reset();
+            } else {
+                alert('Please fill in both fields.');
+            }
+        }
+    </script>
 </head>
 <body>
+    <div class="header-container">
+        <img src="logo.jpeg" alt="Silent Connect Logo" class="logo"> <!-- Added logo -->
+        <h1 style="color: white;">Silent Connect 🌐</h1>
+    </div>
+
     <div class="container">
         <h1>Emergency Contacts</h1>
-        <form id="contact-form">
+        <form id="contact-form" onsubmit="saveContact(event)">
             <label for="contact-name">Name:</label>
             <input type="text" id="contact-name" placeholder="Enter contact name" required>
             
             <label for="contact-phone">Phone Number:</label>
             <input type="tel" id="contact-phone" placeholder="Enter phone number" required>
             
-            <button type="submit">Add Contact</button>
+            <button type="submit">Save Contact</button>
         </form>
         <ul id="contact-list" class="contact-list">
             <!-- Contacts will be dynamically added here -->
         </ul>
-        <button onclick="location.href='index.html'">Go to Main</button> <!-- Button to go to index.html -->
+        <button onclick="location.href='try.html'">Go to Main</button> <!-- Updated to navigate to try.html -->
     </div>
 
     <script>

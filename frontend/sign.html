@@ -14,7 +14,8 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background: url('restbg.jpeg') no-repeat center center fixed; /* Added restbg.jpeg as background */
+            background-size: cover; /* Ensures the image fits the entire screen */
             text-align: center;
         }
         .form-container {
@@ -58,7 +59,7 @@
 <body>
     <div class="form-container">
         <img src="logo.jpeg" alt="Silent Connect Logo" class="logo">
-        <h1>Silent Connect</h1>
+        <h1>Silent Connect 🌐</h1>
         <h2>Create Account</h2>
         <form id="sign-up-form" action="signin.html" method="get">
             <label for="signup-email">Email:</label>

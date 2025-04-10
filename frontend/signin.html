@@ -14,7 +14,8 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background: url('restbg.jpeg') no-repeat center center fixed; /* Added restbg.jpeg as background */
+            background-size: cover; /* Ensures the image fits the entire screen */
             text-align: center;
         }
         .form-container {
@@ -58,9 +59,9 @@
 <body>
     <div class="form-container">
         <img src="logo.jpeg" alt="Silent Connect Logo" class="logo">
-        <h1>Silent Connect</h1>
+        <h1>Silent Connect 🌐</h1>
         <h2>Sign In</h2>
-        <form id="sign-in-form" onsubmit="handleSignIn(event)">
+        <form id="sign-in-form" action="emercontact.html" method="get"> <!-- Redirect to emercontact.html -->
             <label for="signin-username">Username:</label>
             <input type="text" id="signin-username" name="username" placeholder="Enter your username" required>
             
@@ -71,13 +72,5 @@
         </form>
         <p>Don't have an account? <a href="sign.html">Sign Up</a></p>
     </div>
-
-    <script>
-        function handleSignIn(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-            // Add any authentication logic here if needed
-            location.href = 'emercontact.html'; // Redirect to emercontact.html after signing in
-        }
-    </script>
 </body>
 </html>

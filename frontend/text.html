@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Text-to-Speech and Speech-to-Text features for Silent Connect.">
+    <title>Silent Connect</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <script src="script.js" defer></script> <!-- Link to your JavaScript file -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('restbg.jpeg') no-repeat center center fixed; /* Added restbg.jpeg as background */
+            background-size: cover; /* Ensures the image fits the entire screen */
+            text-align: center;
+        }
+        .container {
+            background: white; /* Continuous white space */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        .logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        .tool-container {
+            margin-top: 1rem;
+        }
+        textarea {
+            width: 100%;
+            height: 40px;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+        }
+        button {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            color: white;
+            background-color: #0078d7;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 0.5rem;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="logo.jpeg" alt="Silent Connect Logo" class="logo"> <!-- Added logo -->
+        <h1>Silent Connect 🌐</h1>
+
+        <main>
+            <section id="text-to-speech">
+                <h2>Text-to-Speech</h2>
+                <div class="tool-container">
+                    <textarea id="text-to-speech-box" placeholder="Type text here..."></textarea>
+                    <button onclick="convertTextToSpeech(document.getElementById('text-to-speech-box').value)">Convert to Speech</button> <!-- Pass text to script.js -->
+                </div>
+            </section>
+
+            <section id="speech-to-text">
+                <h2>Speech-to-Text</h2>
+                <div class="tool-container">
+                    <textarea id="speech-to-text-box" placeholder="Your speech will appear here..." readonly></textarea>
+                    <button onclick="startSpeechToText()">Start Speech Recognition</button> <!-- Uses script.js -->
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

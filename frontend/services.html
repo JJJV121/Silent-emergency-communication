@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Silent Emergency Communication website for speech and hearing impaired individuals to seek urgent help efficiently.">
-    <title>Silent Connect</title>
+    <meta name="description" content="Emergency Services for Silent Connect.">
+    <title>Emergency Services - Silent Connect</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
     <script src="script.js" defer></script> <!-- Link to your JavaScript file -->
     <style>
@@ -15,12 +15,12 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background: url('restbg.jpeg') no-repeat center center fixed;
+            background: url('restbg.jpeg') no-repeat center center fixed; /* Added restbg.jpeg as background */
             background-size: cover; /* Ensures the image fits the entire screen */
             text-align: center;
         }
         .container {
-            background: white; /* Continuous white box */
+            background: white; /* Continuous white space */
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -35,27 +35,26 @@
             margin-bottom: 2rem;
         }
         .logo {
-            width: 100px; /* Enlarged logo size */
+            width: 120px;
             height: auto;
         }
         h1 {
             font-size: 2rem;
-            color: #333;
+            color: #333; /* Removed light blue background */
             margin: 0;
-            background: none; /* Removed light blue background */
-            border: none; /* Removed border */
+            background: none; /* Ensures no background color */
+            border: none; /* Ensures no border */
         }
         p {
             font-size: 1.2rem;
             color: #555;
             margin-bottom: 2rem;
         }
-        .button-container {
+        .button-container, .phrases-container {
             display: flex;
-            flex-direction: column; /* Stack buttons vertically */
-            gap: 1rem; /* Added gap between buttons */
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
         button {
             padding: 0.8rem 1.5rem;
@@ -70,12 +69,6 @@
         button:hover {
             background-color: #005bb5;
         }
-        #location-sharing {
-            margin-top: 2rem;
-        }
-        #location-sharing button {
-            margin-top: 0.5rem;
-        }
     </style>
 </head>
 <body>
@@ -83,35 +76,23 @@
         <header>
             <div class="header-container">
                 <img src="logo.jpeg" alt="Silent Connect Logo" class="logo"> <!-- Added logo -->
-                <h1>Silent Connect</h1> <!-- Centered Silent Connect -->
+                <h1 style="color: white;">Silent Connect 🌐</h1>
             </div>
-            <p>Enhancing accessibility and safety in critical situations</p>
+            <p style="color: white;">Select a service below to get help immediately.</p>
         </header>
 
         <main>
             <div class="button-container">
-                <button onclick="location.href='services.html'">Emergency Services</button> <!-- Combined button -->
-                <button onclick="location.href='text.html'">Communication Tools</button> <!-- Communication Tools button -->
+                <button onclick="handleEmergency('ambulance', '108')">🚑 Call Ambulance</button>
+                <button onclick="handleEmergency('fire services', '101')">🔥 Call Fire Services</button>
+                <button onclick="handleEmergency('police', '100')">🚓 Call Police</button>
             </div>
 
-            <section id="location-sharing">
-                <button onclick="shareLocation()">📍 Share Live Location</button> <!-- Removed white box -->
-                <p id="location-status"></p>
-            </section>
-
-            <section id="emergency-contacts">
-                <h2>Personal Emergency Contacts</h2>
-                <button onclick="callPriorityContact()">Call Priority Contact</button>
-                <ul id="contact-list">
-                    <!-- Contacts from emercontact.html will be displayed here -->
-                </ul>
-            </section>
+            <div class="phrases-container">
+                <button onclick="convertTextToSpeech('I need immediate help!')">🔊 I need immediate help!</button>
+                <button onclick="convertTextToSpeech('Please send assistance to my location.')">🔊 Please send assistance to my location.</button>
+            </div>
         </main>
-
-        <footer>
-            <p>&copy; 2025 Silent Connect. All rights reserved.</p>
-        </footer>
     </div>
-    <script src="script.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>

@@ -18,6 +18,26 @@ function callService(service) {
     alert(`Dialing ${number} for ${service}...`);
 }
 
+// Function to handle emergency service calls
+function handleEmergency(service, number) {
+    // Simulate sending location
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                const locationMessage = `Sending your location (Latitude: ${latitude}, Longitude: ${longitude}) to ${service}.`;
+                console.log(locationMessage);
+                alert(`Location has been shared! Calling ${service} (${number})...`);
+            },
+            () => {
+                alert(`Unable to retrieve your location. Calling ${service} (${number})...`);
+            }
+        );
+    } else {
+        alert(`Geolocation is not supported by your browser. Calling ${service} (${number})...`);
+    }
+}
+
 // Function to start Text-to-Speech
 function startTextToSpeech() {
     const text = prompt("Enter text to convert to speech:");
@@ -29,39 +49,43 @@ function startTextToSpeech() {
 
 // Function to start Speech-to-Text
 function startSpeechToText() {
+    const textBox = document.getElementById('speech-to-text-box');
     if (!('webkitSpeechRecognition' in window)) {
-        alert("Speech-to-Text is not supported in this browser.");
+        textBox.value = "Speech-to-Text is not supported in this browser.";
         return;
     }
     const recognition = new webkitSpeechRecognition();
     recognition.lang = "en-US";
     recognition.onresult = function(event) {
-        alert(`You said: ${event.results[0][0].transcript}`);
+        textBox.value = event.results[0][0].transcript;
     };
     recognition.onerror = function() {
-        alert("Speech recognition failed. Please try again.");
+        textBox.value = "Speech recognition failed. Please try again.";
     };
     recognition.start();
 }
 
-// Function to share live location
+// Function to share the current location using Google Maps
 function shareLocation() {
-    const locationStatus = document.getElementById("location-status");
-    if (!navigator.geolocation) {
-        locationStatus.textContent = "Geolocation is not supported by your browser.";
-        return;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
+                
+                // Create an anchor element and trigger a click to open the link
+                const link = document.createElement('a');
+                link.href = googleMapsUrl;
+                link.target = '_blank'; // Open in a new tab
+                link.click();
+            },
+            () => {
+                alert('Unable to retrieve your location.');
+            }
+        );
+    } else {
+        alert('Geolocation is not supported by your browser.');
     }
-    locationStatus.textContent = "Fetching location...";
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-            const { latitude, longitude } = position.coords;
-            const mapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
-            locationStatus.innerHTML = `Location shared: <a href="${mapsUrl}" target="_blank">View on Map</a>`;
-        },
-        () => {
-            locationStatus.textContent = "Unable to retrieve your location.";
-        }
-    );
 }
 
 // Function to manage emergency contacts
@@ -118,3 +142,19 @@ document.getElementById('contact-form')?.addEventListener('submit', (e) => {
         document.getElementById('contact-form').reset();
     }
 });
+
+// Function to convert text to speech
+function convertTextToSpeech(text) {
+    if (text.trim() !== '') {
+        // Check if the browser supports speech synthesis
+        if ('speechSynthesis' in window) {
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'en-US'; // Set the language to English (US)
+            window.speechSynthesis.speak(speech);
+        } else {
+            alert('Text-to-Speech is not supported in this browser.');
+        }
+    } else {
+        alert('No text provided to convert to speech.');
+    }
+}
