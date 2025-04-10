@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Silent Connect - Quick, silent help for the speech and hearing impaired.">
-    <title>Silent Connect</title>
+    <meta name="description" content="Welcome to Silent Connect!. Quick, silent help for the speech and hearing impaired.">
+    <title>Welcome to Silent Connect</title>
     <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
-    <script src="script.js" defer></script> <!-- Link to your JavaScript file -->
     <style>
         body {
             display: flex;
@@ -16,27 +15,27 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background: url('welcomebg.jpeg') no-repeat center center fixed;
+            background-size: cover;
             text-align: center;
         }
         .logo {
-            width: 100px;
+            width: 250px; /* Increased size */
             height: auto;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         h1 {
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 1rem;
+            font-size: 3rem; /* Larger font size */
+            color: white; /* White color for better contrast */
+            margin-bottom: 1.5rem;
         }
         p {
-            font-size: 1.2rem;
-            color: #555;
+            font-size: 1.5rem; /* Larger font size */
+            color: white; /* White color for better contrast */
             margin-bottom: 2rem;
         }
         .button-container {
             display: flex;
-            flex-direction: column;
             gap: 1rem;
         }
         button {
@@ -56,17 +55,17 @@
 </head>
 <body>
     <img src="logo.jpeg" alt="Silent Connect Logo" class="logo">
-    <h1>Silent Connect</h1>
+    <h1>Welcome to Silent Connect</h1>
     <p>Quick, silent help for the speech and hearing impaired.</p>
     <div class="button-container">
-        <button onclick="callEmergencyService('ambulance')">🚑 Call Ambulance</button>
-        <button onclick="callEmergencyService('fire')">🔥 Call Fire Services</button>
-        <button onclick="callEmergencyService('police')">🚓 Call Police</button>
-        <button onclick="startTextToSpeech()">Text-to-Speech</button>
-        <button onclick="startSpeechToText()">Speech-to-Text</button>
-        <button onclick="shareLocation()">📍 Share Location</button>
-        <button onclick="location.href='emercontact.html'">Save Emergency Contacts</button>
-        <button onclick="callPriorityContact()">Call Priority Contact</button>
+        <button onclick="location.href='sign.html'">Sign Up</button>
+        <button onclick="showHowItWorks()">How It Works</button>
     </div>
+
+    <script>
+        function showHowItWorks() {
+            alert("Silent Connect enables quick, silent communication for emergencies. Features include:\n\n- Quick-call buttons for emergency services.\n- Text-to-speech and speech-to-text tools.\n- Live location sharing.\n- Personal emergency contact management.");
+        }
+    </script>
 </body>
 </html>

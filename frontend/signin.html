@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign In to Silent Connect.">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label, input, button, p {
+            margin: 0.5rem 0;
+            width: 100%;
+            max-width: 300px;
+        }
+        input, button {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #0078d7;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005bb5;
+        }
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <img src="logo.jpeg" alt="Silent Connect Logo" class="logo">
+        <h1>Silent Connect</h1>
+        <h2>Sign In</h2>
+        <form id="sign-in-form" action="index.html" method="get">
+            <label for="signin-username">Username:</label>
+            <input type="text" id="signin-username" name="username" placeholder="Enter your username" required>
+            
+            <label for="signin-password">Password:</label>
+            <input type="password" id="signin-password" name="password" placeholder="Enter your password" required>
+            
+            <button type="submit">Sign In</button>
+        </form>
+        <p>Don't have an account? <a href="sign.html">Sign Up</a></p>
+    </div>
+</body>
+</html>
